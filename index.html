@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17130f">
+  <title>SANCHO — Чыгыштын даамы</title>
+  <style>
+    :root{--bg:#17130f;--panel:#211b15;--gold:#d8a85e;--cream:#f6eee2;--muted:#b9aa98;--line:#3b3025}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--cream);font-family:Inter,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}.wrap{width:min(1160px,92%);margin:auto}
+    header{position:sticky;top:0;z-index:10;background:#17130feF;border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between}.logo{font-family:Georgia,serif;font-size:29px;font-weight:bold;letter-spacing:1px;color:var(--gold)}
+    .links{display:flex;gap:28px;color:#e8ddcf;font-size:14px}.links a:hover{color:var(--gold)}.navbtn{display:none;background:none;color:var(--cream);border:1px solid var(--line);padding:9px 12px;border-radius:8px}
+    .hero{min-height:610px;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:40px;padding:70px 0}
+    .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:3px;font-size:12px;font-weight:700}
+    h1{font-family:Georgia,serif;font-size:clamp(48px,6vw,76px);line-height:1.02;margin:18px 0 22px;font-weight:500}
+    .hero p{color:var(--muted);font-size:17px;line-height:1.8;max-width:510px}.actions{display:flex;gap:13px;margin-top:30px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 23px;border-radius:5px;background:var(--gold);color:#21170d;font-weight:700;border:1px solid var(--gold);transition:.2s}
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.08)}.btn.ghost{background:transparent;color:var(--cream);border-color:#766044}
+    .hero-img{height:470px;border-radius:8px;overflow:hidden;position:relative;border:1px solid #5c4933}
+    .hero-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.78)}
+    .hero-img:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#17130f)}
+    .hero-tag{position:absolute;z-index:1;bottom:25px;left:25px;color:#fff;font-family:Georgia,serif;font-size:25px}
+    section{padding:78px 0}.section-head{text-align:center;margin-bottom:38px}.section-head h2{font:500 clamp(34px,4vw,48px) Georgia,serif;margin:10px 0}.section-head p{color:var(--muted);margin:0}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature{background:var(--panel);border:1px solid var(--line);padding:27px;border-radius:7px;text-align:center}.feature b{display:block;color:var(--gold);font:26px Georgia,serif;margin-bottom:8px}.feature span{color:var(--muted);font-size:14px}
+    .menu-section{background:#1d1813}.filters{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-bottom:28px}.filter{border:1px solid var(--line);background:transparent;color:var(--muted);padding:10px 17px;border-radius:30px}.filter.active,.filter:hover{background:var(--gold);border-color:var(--gold);color:#21170d}
+    .search{display:block;width:min(380px,100%);margin:0 auto 30px;padding:13px 16px;border:1px solid var(--line);border-radius:6px;background:#17130f;color:var(--cream);outline:none}.search:focus{border-color:var(--gold)}
+    .dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.dish{background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;transition:.2s}.dish:hover{transform:translateY(-5px);border-color:#80633f}
+    .dish img{width:100%;height:210px;object-fit:cover;display:block}.dish-body{padding:18px}.dish small{color:var(--gold);text-transform:uppercase;letter-spacing:1px}.dish h3{font:24px Georgia,serif;margin:9px 0}.dish p{color:var(--muted);font-size:13px;line-height:1.5;min-height:38px}.price{color:var(--gold);font-weight:700;font-size:18px}
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}.about img{width:100%;height:390px;object-fit:cover;border-radius:8px}.about h2{font:500 44px Georgia,serif;margin:12px 0}.about p{color:var(--muted);line-height:1.85}
+    .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.review{padding:25px;background:var(--panel);border:1px solid var(--line);border-radius:7px}.stars{color:var(--gold);letter-spacing:3px}.review p{line-height:1.7;color:#d7cabb}.review b{font-size:14px}
+    .contact-section{background:#1d1813}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.contact-card{padding:28px;background:var(--panel);border:1px solid var(--line);border-radius:7px}.contact-card h3{font:26px Georgia,serif;margin-top:0}.contact-card p{color:var(--muted);line-height:1.8}.contact-card a{color:var(--gold)}
+    footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    @media(max-width:800px){.hero{grid-template-columns:1fr;padding:55px 0}.hero-img{height:340px}.dishes{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.about img{height:300px}.reviews{grid-template-columns:1fr}.links{display:none;position:absolute;top:76px;left:0;right:0;background:#17130f;padding:22px 4%;flex-direction:column;gap:18px;border-bottom:1px solid var(--line)}.links.open{display:flex}.navbtn{display:block}}
+    @media(max-width:520px){.dishes,.features,.contact-grid{grid-template-columns:1fr}.hero{min-height:0}.hero-img{height:280px}section{padding:58px 0}.about h2{font-size:36px}.logo{font-size:25px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#home">SANCHO</a>
+    <nav class="links" id="links">
+      <a href="#home">Башкы бет</a><a href="#menu">Меню</a><a href="#about">Биз жөнүндө</a><a href="#reviews">Пикирлер</a><a href="#contacts">Байланыш</a>
+    </nav>
+    <button class="navbtn" id="navbtn" aria-label="Менюну ачуу">☰</button>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero" id="home">
+    <div>
+      <div class="eyebrow">«Sancho» чайканалары</div>
+      <h1>Чыгыштын даамы.<br>Жолугушуунун жылуулугу.</h1>
+      <p>Сүйүктүү тамактарыңыз, жагымдуу маанай жана жакындарыңыз менен эстен кеткис көз ирмемдер. Сизди «Sancho»го чакырабыз!</p>
+      <div class="actions"><a class="btn" href="#menu">Менюну көрүү</a><a class="btn ghost" href="#contacts">Бизди табуу</a></div>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85" alt="Ресторандын дасторкону" onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85'">
+      <div class="hero-tag">Даам менен жылуулук бир жерде</div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Биздин артыкчылык</div><h2>Ар бир конок — өзгөчө</h2><p>Жакшы тамак, жылуу тосуп алуу жана жайлуу атмосфера</p></div>
+      <div class="features">
+        <div class="feature"><b>01</b><span>Чыгыш, кыргыз жана европа ашканасы</span></div>
+        <div class="feature"><b>02</b><span>Үй-бүлө жана достор менен жолугушууга ыңгайлуу</span></div>
+        <div class="feature"><b>03</b><span>Даамдуу тамактар жана жылуу тейлөө</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-section" id="menu">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Биздин меню</div><h2>Сүйүктүү даамдарыңыз</h2><p>Өзүңүзгө жаккан тамакты тандаңыз</p></div>
+      <input class="search" id="search" type="search" placeholder="Тамакты издөө...">
+      <div class="filters" id="filters">
+        <button class="filter active" data-cat="all">Баары</button><button class="filter" data-cat="Чыгыш ашканасы">Чыгыш ашканасы</button><button class="filter" data-cat="Салаттар">Салаттар</button><button class="filter" data-cat="Десерттер">Десерттер</button>
+      </div>
+      <div class="dishes" id="dishes">
+        <article class="dish" data-cat="Салаттар" data-name="Sancho"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80" alt="Sancho салаты"><div class="dish-body"><small>Салаттар</small><h3>Sancho</h3><p>Жаңы жашылчалардан даярдалган өзгөчө салат.</p><div class="price">450 сом · 330 г</div></div></article>
+        <article class="dish" data-cat="Чыгыш ашканасы" data-name="Куурдак"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Куурдак"><div class="dish-body"><small>Чыгыш ашканасы</small><h3>Куурдак</h3><p>Даамдуу жана тоюмдуу салттуу ысык тамак.</p><div class="price">750 сом · 600 г</div></div></article>
+        <article class="dish" data-cat="Чыгыш ашканасы" data-name="Гюро лагман"><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80" alt="Лагман"><div class="dish-body"><small>Чыгыш ашканасы</small><h3>Гюро лагман</h3><p>Колго жасалган кесме жана жыпар жыттуу соус.</p><div class="price">410 сом · 450 г</div></div></article>
+        <article class="dish" data-cat="Десерттер" data-name="Сан-Себастьян"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80" alt="Сан Себастьян"><div class="dish-body"><small>Десерттер</small><h3>Сан-Себастьян</h3><p>Кофе менен эң сонун айкалышкан назик десерт.</p><div class="price">380 сом · 165 г</div></div></article>
+        <article class="dish" data-cat="Чыгыш ашканасы" data-name="Манты"><img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80" alt="Манты"><div class="dish-body"><small>Чыгыш ашканасы</small><h3>Манты</h3><p>Ширелүү салмасы бар бууга бышкан манты.</p><div class="price">390 сом</div></div></article>
+        <article class="dish" data-cat="Салаттар" data-name="Жашылча салаты"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80" alt="Жашылча салаты"><div class="dish-body"><small>Салаттар</small><h3>Жашылча салаты</h3><p>Жаңы жана жеңил жашылча салаты.</p><div class="price">320 сом</div></div></article>
+      </div>
+      <p id="empty" style="display:none;text-align:center;color:var(--muted)">Бул категорияда тамак табылган жок.</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1100&q=85" alt="Жайлуу ресторан">
+      <div><div class="eyebrow">Биз жөнүндө</div><h2>Бир дасторкондун айланасында</h2><p>«Sancho» — даамдуу тамактар менен жакын адамдарды бириктирген жай. Менюбузда чыгыш, кыргыз жана европа ашканасынын түрдүү тамактары бар. Биз ар бир конок өзүн үйүндөгүдөй сезишин каалайбыз.</p><a class="btn" href="#contacts">Биз менен байланышыңыз</a></div>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Коноктордун пикири</div><h2>Биз жөнүндө эмне дешет?</h2><p>Ар бир жылуу сөз биз үчүн маанилүү</p></div>
+      <div class="reviews">
+        <div class="review"><div class="stars">★★★★★</div><p>«Абдан даамдуу. Жылуу жана жайлуу маанай үчүн рахмат!»</p><b>— Биздин конок</b></div>
+        <div class="review"><div class="stars">★★★★★</div><p>«Тамактары даамдуу, отуруп эс алууга жакшы жер.»</p><b>— Биздин конок</b></div>
+        <div class="review"><div class="stars">★★★★★</div><p>«Баары сонун болду. Сөзсүз кайра келебиз!»</p><b>— Биздин конок</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contacts">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Бизди табыңыз</div><h2>Байланыштар</h2><p>Сизди күтөбүз!</p></div>
+      <div class="contact-grid">
+        <div class="contact-card"><h3>Бишкек — борбор</h3><p>Дарек: Касым Тыныстанов көчөсү, 231<br>Иш убактысы: күн сайын<br>Телефон: <a href="tel:+996000000000">+996 (000) 000-000</a></p><a class="btn" target="_blank" rel="noopener" href="https://2gis.kg/bishkek">Картадан көрүү</a></div>
+        <div class="contact-card"><h3>Биз менен байланышыңыз</h3><p>Стол брондоо же суроолор боюнча бизге чалыңыз. Бул демо-сайттагы телефон номерин жана даректи өзүңүздүн чыныгы маалыматтарыңызга алмаштырыңыз.</p><a href="tel:+996000000000">Телефон чалуу →</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap foot"><span>© <span id="year"></span> SANCHO. Бардык укуктар корголгон.</span><span>Даам менен жылуулук бир жерде.</span></div></footer>
+
+<script>
+  const navbtn=document.getElementById('navbtn'), links=document.getElementById('links');
+  navbtn.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+  let category='all';
+  const cards=[...document.querySelectorAll('.dish')], search=document.getElementById('search'), empty=document.getElementById('empty');
+  function filterDishes(){
+    const q=search.value.trim().toLocaleLowerCase();
+    let count=0;
+    cards.forEach(card=>{
+      const matchCat=category==='all'||card.dataset.cat===category;
+      const matchText=(card.dataset.name+' '+card.innerText).toLocaleLowerCase().includes(q);
+      card.style.display=matchCat&&matchText?'block':'none';
+      if(matchCat&&matchText)count++;
+    });
+    empty.style.display=count?'none':'block';
+  }
+  document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelector('.filter.active').classList.remove('active');
+    btn.classList.add('active');category=btn.dataset.cat;filterDishes();
+  }));
+  search.addEventListener('input',filterDishes);
+  document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
